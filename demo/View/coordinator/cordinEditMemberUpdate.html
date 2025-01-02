@@ -1,0 +1,50 @@
+<script src="Controller/cordinEditMemberUpdateController.js"></script>
+<script src="Controller/dropdown3.js"></script>
+
+<div class="row align-items-center">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+            <form action="" id="myForm" method="post">
+                <input type="hidden" name="mnid" id="mnid">
+                <h3 class="text-center text-secondary">Edit Member</h3>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Name</label>
+                        <input type="text" name="mname" id="mname" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="name" class="text-primary">Community Name</label> 
+                        <input type="text" name="comm" id="comm" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Gender</label>
+                    <input type="text" name="gender" id="gender" class="form-control" minlength="2" maxlength="20"
+                    required>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Date Of Birth</label>
+                    <input type="date" name="bdate" id="bdate" class="form-control" required>
+                </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Qualification</label>
+                    <input type="text" name="edu" id="edu" class="form-control" minlength="2" maxlength="20"
+                    required>
+                  </div>
+                </div> 
+                <div class="col-md-12"><br>
+                  <button class="btn btn-success" type="button" onclick="location.href='index_cordin1.py?id=viewMember'">BACK</button>
+              </div>       
+                
+        <div class="text-center" id="msg"></div>
+    </form>
+</div>

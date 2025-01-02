@@ -1,0 +1,103 @@
+<script src="Controller/cordinAddMemberController.js"></script>
+<script src="Controller/dropdown3.js"></script>
+
+<div class="row align-items-center">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+      <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+        <form action="" class="myForm1" id="myForm1" method="post">
+          <h3 class="text-center text-secondary">Add Members</h3>
+              <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Name</label>
+                    <input type="text" name="mname" id="mname" class="form-control" placeholder="Member Name" minlength="2" maxlength="20"
+                     required>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Community Name</label> 
+                    <select name="comm" id="comm" class="form-control" required>
+                  
+                    </select>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Gender</label><br>
+                    <input type="radio" name="gender" id="gender" value="Male" checked><label for="Male">Male</label>&emsp;
+                    <input type="radio" name="gender" id="gender" value="Female"><label for="Female">Female</label>&emsp;
+                    <input type="radio" name="gender" id="gender" value="Others"><label for="Others">Others</label><br><br>
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">Date Of Birth</label>
+                  <input type="date" name="bdate" id="bdate" class="form-control" required>
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-md-12">
+                <label for="name" class="text-primary">Qualification</label><br>
+                <input type="radio" name="edu" id="edu" value="LP" checked><label for="LP">LP</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="UP"><label for="UP">UP</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="HS"><label for="HS">HS</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="HSS"><label for="HSS">HSS</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="Degree"><label for="Degree">Degree</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="Others"><label for="Others">Above Degree</label>&emsp;
+                <input type="radio" name="edu" id="edu" value="None"><label for="None">None</label>
+            </div>
+              </div>
+      <div class="row form-group">
+          <div class="col-md-12 text-right">
+            <button type="submit" id="submit" class="btn btn-success">Add</button>
+            <button type="reset" id="cancel" class="btn btn-secondary">Cancel</button>
+          </div>
+      </div>
+      <div class="text-center" id="msg"></div>
+  </form>
+</div>
+<script>
+
+  $(document).ready(function($) 
+  {
+     
+    jQuery.validator.addMethod("lettersonly", function(value, element) 
+    {
+              return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please");       
+    $('#myForm1').validate({
+      rules: 
+      {        
+        mname: 
+        {
+          required: true,
+          lettersonly: true
+        },
+      },
+      messages: 
+      {
+        mname: 
+        {
+          required: "Name required",
+          lettersonly:"Only Alphabets"  
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+      $(element).addClass('is-valid');
+    },
+      
+    }); 
+  });
+      
+</script>

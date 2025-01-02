@@ -1,0 +1,164 @@
+<script src="Controller/cordinAddManagerController.js"></script>
+<div class="row align-items-center">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+      <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+          <form action="" id="myForm" method="post">
+            <input type="hidden" name="coid" id="coid">
+                <h3 class="text-center text-secondary">Add Manager</h3>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                  <label for="name" class="text-primary">Name</label>
+                    <input type="text" name="mname" id="mname" class="form-control" placeholder="Manager Name" minlength="2"
+                      required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">  
+                  <label for="name" class="text-primary">Address</label>
+                    <textarea name="address" id="address" class="form-control" placeholder="Councillor Address" minlength="2"
+                      required>
+                    </textarea>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">Gender</label><br>
+                    <input type="radio" name="gender" id="gender" value="Male" checked><label for="Male">Male</label>
+                    <input type="radio" name="gender" id="gender" value="Female"><label for="Female">Female</label>
+                    <input type="radio" name="gender" id="gender" value="Others"><label for="Others">Others</label>
+                </div>
+              </div> 
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">Email ID</label>
+                  <input type="text" name="email" id="email" class="form-control" placeholder="Email ID" minlength="2"
+                  required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">Mobile</label>
+                  <input type="text" name="mob" id="mob" class="form-control" placeholder="Mobile No." minlength="2"
+                    required>
+                </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                  <label for="name" class="text-primary">Username</label>
+                  <input type="text" name="uname" id="uname" class="form-control" placeholder="Username" minlength="2"
+                  required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">Password</label>
+                  <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Password" minlength="2"
+                  required>
+                </div>
+              </div>
+            <div class="row form-group">
+                <div class="col-md-12 text-right">
+                  <button type="submit" id="submit" class="btn btn-success">Add</button>
+                  <button type="reset" id="cancel" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+          </form>
+        </div>
+  </div>
+</div>
+<script>
+
+  $(document).ready(function($) 
+  {
+     
+    jQuery.validator.addMethod("lettersonly", function(value, element) 
+    {
+              return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please"); 
+    jQuery.validator.addMethod("numbersonly", function(value, element) 
+    {
+              return this.optional(element) || /^[0-9 ]+$/i.test(value);
+    }, "Numbers only please");
+    jQuery.validator.addMethod("mailformat", function(value, element) 
+    {
+              return this.optional(element) || /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})+$/i.test(value);
+    }, "Inavlid Email ID");
+      
+    $('#myForm').validate({
+      rules: 
+      {        
+        mname: 
+        {
+          required: true,
+          lettersonly: true
+        },
+        address: 
+        {
+          required: true,
+        },
+        email: 
+        {
+          required: true,
+          mailformat: true
+        }, 
+        mob: 
+        {
+          required: true,
+          numbersonly: true
+        },         
+        uname: 
+        {
+          required: true,
+          lettersonly: true
+        },
+        pwd: 
+        {
+          required: true
+        }
+      },
+      messages: 
+      {
+        mname: 
+        {
+          required: "Name required",
+          lettersonly:"Only Alphabets"  
+        },
+        address: 
+        {
+          required: "Address required"  
+        },
+        email: 
+        {
+          required: "Email ID required"            
+        },
+        mob: 
+        {
+          required: "Mobile required"            
+        },
+        uname:
+        {
+          lettersonly:"Only Alphabets"
+        }
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+      $(element).addClass('is-valid');
+    },
+      
+    }); 
+  });
+      
+</script>
+
+
+

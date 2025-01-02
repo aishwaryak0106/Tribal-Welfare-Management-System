@@ -1,0 +1,92 @@
+<script src="Controller/custLoginController.js"></script>
+
+<!--<style>
+  body {
+    background-image: url('../templates/customer1/image/bg1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  </style>-->
+  <br><br><br><br>
+
+<div class="row align-items-center">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+            <form action="" class="myForm" id="myForm" method="post"><br>
+                <h3 class="text-center text-primary">Login</h3>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="name">Username</label>
+                        <input type="text" name="uname" id="uname" class="form-control" placeholder="UserName" minlength="4"
+                            required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name">Password</label>
+                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="password" minlength="8"
+                        required>
+                  </div>
+                </div>
+                <div class="col-md-12"><br>
+                  <button type="submit" id="submit" class="btn btn-success">Login</button>&emsp;
+                  <button type="reset" id="cancel" class="btn btn-secondary">Clear</button><br><br>
+              </div> 
+               
+            </form>
+            <div class="text-right" style="text-align: center;">not registered? <a href="?id=registration">SignUp</a></div>
+          
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    $(document).ready(function($) {
+    
+  
+      
+      jQuery.validator.addMethod("lettersonly", function(value, element) {
+      return this.optional(element) || /^[a-z]+$/i.test(value);
+    }, "Letters only please"); 
+    
+    
+    
+    $('#myForm').validate({
+      rules: {
+        
+    
+        name: {
+          required: true,
+            lettersonly: true 
+        }    
+    
+     },
+     messages: {
+    
+      name: {
+        required: "Name required",
+        lettersonly:"Only Alphabets"
+           }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+      $(element).addClass('is-valid');
+    },
+    }); 
+    });
+    
+    
+    </script>

@@ -1,0 +1,88 @@
+<script src="Controller/cordinAddFamilyController.js"></script>
+<script src="Controller/dropdown1.js"></script>
+<script src="Controller/dropdown3.js"></script>
+
+<div class="row align-items-center">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-6">
+      <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+        <form action="" class="myForm1" id="myForm1" method="post">
+          <h3 class="text-center text-secondary">Add Family details</h3>
+              <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">House Name</label>
+                    <input type="text" name="hname" id="hname" class="form-control" placeholder="House Name" minlength="2"
+                      required>
+                  </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="name" class="text-primary">District</label> 
+                  <select name="dist" id="dist" class="form-control" required>
+
+                  </select>
+                </div>
+              </div>
+              <div class="row form-group">
+                  <div class="col-md-12">
+                    <label for="name" class="text-primary">Community Name</label> 
+                    <select name="comm" id="comm" class="form-control" required>
+                
+                    </select>
+                </div>
+              </div>
+      <div class="row form-group">
+          <div class="col-md-12 text-right">
+            <button type="submit" id="submit" class="btn btn-success">Add</button>
+            <button type="reset" id="cancel" class="btn btn-secondary">Cancel</button>
+          </div>
+      </div>
+      <div class="text-center" id="msg"></div>
+  </form>
+</div>
+<script>
+
+  $(document).ready(function($) 
+  {
+     
+    jQuery.validator.addMethod("lettersonly", function(value, element) 
+    {
+              return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please");       
+    $('#myForm1').validate({
+      rules: 
+      {        
+        hname: 
+        {
+          required: true,
+          lettersonly: true
+        },
+      },
+      messages: 
+      {
+        hname: 
+        {
+          required: "Name required",
+          lettersonly:"Only Alphabets"  
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+      $(element).addClass('is-valid');
+    },
+      
+    }); 
+  });
+      
+</script>
+
+

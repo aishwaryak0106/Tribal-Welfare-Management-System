@@ -1,0 +1,164 @@
+<script src="Controller/custPaymentController.js"></script>
+<br><br><br><br>
+<div class="row align-items-center">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+            <form action="" id="myForm" method="post">
+                <input type="hidden" name="pid" id="pid">
+                <h3 class="text-center "style="color:#dfb76a;">Payment</h3>
+                <div class="row form-group">
+                    <input type="hidden" name="bid" id="bid">
+                    <div class="col-md-6">                        
+                        <label for="uname" style="color:#dfb76a;">Amount</label>
+                        <input type="text" readonly name="amo" id="amo" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="uname"style="color:#dfb76a;"> Address</label>
+                        <input type="text"  name="rno" id="rno" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname"  style="color:#dfb76a;">Card Type</label>
+                        <select name="ctype" class="form-control" id="ctype" required>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="Debit_card">Debit_card</option>
+                            <option value="Credit_card">Credit_card</option>
+                        </select>
+                    </div>
+                </div>
+                <label for=""style="color:#dfb76a;">Card Number</label>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{4}" required name="c1" id="c1" maxlength="4" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{4}" name="c1" id="c2" maxlength="4" required class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{4}" name="c1" id="c3" maxlength="4" required class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{4}" name="c1" id="c4" maxlength="4" required class="form-control">
+                    </div>
+                </div>     
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label for="uname" style="color:#dfb76a;">Cvv</label>
+                        <input type="PASSWORD" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="[0-9]{3}" required name="cvv" id="cvv" maxlength="3" class="form-control" >
+                    </div>
+                    <div class="col-md-6">
+                        <label for="uname"style="color:#dfb76a;">Expiry date</label>
+                        <input type="month" name="cvv" id="cvv" class="form-control" min="2022-06-07" required>
+                    </div>        </div>
+        
+                    
+                    <div class="row form-group">
+                        <div class="col text-right"><br>
+                            <button type="submit" id="submit" class="btn btn-success">PAYMENT</button>
+                            
+                        </div>
+                    </div>
+                    <div class="text-center" id="msg"></div>                
+            </div>
+        </div>        
+        <div class="text-center" id="msg"></div>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function($) 
+    {
+       
+      jQuery.validator.addMethod("lettersonly", function(value, element) 
+      {
+                return this.optional(element) || /^[a-z ]+$/i.test(value);
+      }, "Letters only please"); 
+      jQuery.validator.addMethod("numbersonly", function(value, element) 
+      {
+                return this.optional(element) || /^[0-9 ]+$/i.test(value);
+      }, "Numbers only please");      
+      $('#myForm').validate({
+        rules: 
+        {        
+          rno: 
+          {
+            required: true
+          },
+          c1: 
+          {
+            required: true,
+            numbersonly:true
+          },
+          c2: 
+          {
+            required: true,
+            numbersonly:true
+          },
+          c3: 
+          {
+            required: true,
+            numbersonly:true
+          },
+          c4: 
+          {
+            required: true,
+            numbersonly:true
+          },
+          cvv: 
+          {
+            required: true
+          }
+        },
+        messages: 
+        {
+          rno: 
+          {
+            required: "Address required" 
+          },
+          c1: 
+          {
+            required: "Number required",
+            numbersonly:"Only Numbers"  
+          },
+          c2: 
+          {
+            required: "Number required",
+            numbersonly:"Only Numbers"  
+          },
+          c3: 
+          {
+            required: "Number required",
+            numbersonly:"Only Numbers"  
+          },
+          c4: 
+          {
+            required: "Number required",
+            numbersonly:"Only Numbers"  
+          },
+          cvv: 
+          {
+            required: true
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+        $(element).addClass('is-valid');
+      },
+        
+      }); 
+    });        
+  </script>
+
+
+

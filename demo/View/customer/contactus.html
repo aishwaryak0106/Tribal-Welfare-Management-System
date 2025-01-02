@@ -1,0 +1,148 @@
+<script src="Controller/custContactController.js"></script>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s"><br><br>
+        <div class="container py-5" style="background-color: whitesmoke;">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Contact Us</h5>
+                <h1 class="mb-0">If You Have Any Query, Feel Free To Contact Us</h1>
+            </div>
+            <div class="row g-5 mb-5">
+                <!--<div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Call to ask any question</h5>
+                            <h4 class="text-primary mb-0">+91 7994055242</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-envelope-open text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Email to get free quote</h5>
+                            <h4 class="text-primary mb-0">aishwaryakavil@gmail.com</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Visit our office</h5>
+                            <h4 class="text-primary mb-0">ANGAMALY, ERNAKULAM, KERALA</h4>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                    <form action="" class="myForm" id="myForm" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" id="name" name="name" placeholder="Your Name" style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" id="email" name="email" placeholder="Your Email" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control border-0 bg-light px-4" id="sub" name="sub" placeholder="Subject" style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" id="msgs" name="msgs" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
+                    <iframe class="position-relative rounded w-100 h-100"
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.045023570585!2d76.37261401433294!3d10.176995872755096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08066d8c2c2ceb%3A0xbfb96c18873c470f!2sDe%20Paul%20Institute%20of%20Science%20%26%20Technology%20(DiST)%20Angamaly!5e0!3m2!1sen!2sbd!4v1654531353789!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+    <script>
+        $(document).ready(function($) {
+          jQuery.validator.addMethod("lettersonly", function(value, element) 
+          {
+                    return this.optional(element) || /^[a-z ]+$/i.test(value);
+          }, "Letters only please"); 
+          jQuery.validator.addMethod("numbersonly", function(value, element) 
+          {
+                    return this.optional(element) || /^[0-9 ]+$/i.test(value);
+          }, "Numbers only please");
+          jQuery.validator.addMethod("mailformat", function(value, element) 
+          {
+                    return this.optional(element) || /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})+$/i.test(value);
+          }, "Inavlid Email ID");    
+        
+        $('#myForm').validate({
+          rules: {
+            name: {
+              required: true,
+                lettersonly: true 
+            },
+            email: 
+              {
+                required: true,
+                mailformat: true
+              }, 
+              sub: 
+              {
+                required: true,
+                lettersonly: true
+              },  
+              msgs: 
+              {
+                required: true
+              }   
+        
+         },
+         messages: {
+        
+          name: {
+            required: "Name required",
+            lettersonly:"Only Alphabets"
+               },
+               email: 
+              {
+                required: "Email ID required"            
+              },
+              sub: 
+              {
+                required: "Subject required",
+                lettersonly:"Only Alphabets"           
+              },
+              msgs:
+              {
+                required: "Message Required"
+              }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+          $(element).addClass('is-valid');
+        },
+        }); 
+        });
+        
+        
+        </script>

@@ -1,0 +1,153 @@
+<script src="Controller/councUpdateProfileController.js"></script>
+
+<div class="row align-items-center">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+            <form action="" id="myForm" method="post">
+                <input type="hidden" name="cid" id="cid">
+                <h3 class="text-center text-secondary">Edit Profile</h3>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Name</label>
+                        <input type="text" name="cname" id="cname" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Address</label>
+                        <input type="text" name="caddress" id="caddress" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Email ID</label>
+                        <input type="text" name="cemail" id="cemail" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Mobile</label>
+                        <input type="text" name="mob" id="mob" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Username</label>
+                        <input type="text" name="uname" id="uname" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Password</label>
+                        <input type="password" name="pwd" id="pwd" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Confirm Password</label>
+                        <input type="password" name="cpw" id="cpw" class="form-control" required>
+                    </div>
+                </div>
+                </div>       
+        <div class="row form-group">
+            <div class="col-md-12 text-right">
+                <button type="reset" id="cancel" class="btn btn-secondary">Cancel</button>
+                <button type="submit" id="submit" class="btn btn-success">Update</button>
+            </div>
+        </div>
+        <div class="text-center" id="msg"></div>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function($) 
+    {
+       
+      jQuery.validator.addMethod("lettersonly", function(value, element) 
+      {
+                return this.optional(element) || /^[a-z ]+$/i.test(value);
+      }, "Letters only please"); 
+      jQuery.validator.addMethod("numbersonly", function(value, element) 
+      {
+                return this.optional(element) || /^[0-9 ]+$/i.test(value);
+      }, "Numbers only please");
+      jQuery.validator.addMethod("mailformat", function(value, element) 
+      {
+                return this.optional(element) || /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})+$/i.test(value);
+      }, "Inavlid Email ID");
+        
+      $('#myForm').validate({
+        rules: 
+        {        
+          cname: 
+          {
+            required: true,
+            lettersonly: true
+          },
+          caddress: 
+          {
+            required: true,
+          },
+          cemail: 
+          {
+            required: true,
+            mailformat: true
+          }, 
+          mob: 
+          {
+            required: true,
+            numbersonly: true
+          },         
+          uname: 
+          {
+            required: true,
+            lettersonly: true
+          },
+          pwd: 
+          {
+            required: true
+          }
+        },
+        messages: 
+        {
+          cname: 
+          {
+            required: "Name required",
+            lettersonly:"Only Alphabets"  
+          },
+          caddress: 
+          {
+            required: "Address required"  
+          },
+          cemail: 
+          {
+            required: "Email ID required"            
+          },
+          mob: 
+          {
+            required: "Mobile required"            
+          },
+          uname:
+          {
+            lettersonly:"Only Alphabets"
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+        $(element).addClass('is-valid');
+      },
+        
+      }); 
+    });
+        
+  </script>

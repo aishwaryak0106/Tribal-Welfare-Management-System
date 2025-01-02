@@ -1,0 +1,80 @@
+<script src="Controller/editPackageUpdateController.js"></script>
+
+<div class="row align-items-center">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class=" shadow p-3 mb-5 rounded bg-light text-dark text-center text-right p-3 my-5">
+            <form action="" id="myForm" method="post">
+                <input type="hidden" name="pid" id="pid">
+                <h3 class="text-center text-secondary">Edit Packages</h3>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Name</label>
+                        <input type="text" name="pname" id="pname" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="uname">Description</label>
+                        <textarea name="pdesc" id="pdesc" class="form-control" minlength="2" required></textarea>
+                    </div>
+                </div>
+        <div class="row form-group">
+            <div class="col-md-12 text-right">
+                <button type="reset" id="cancel" class="btn btn-secondary">Cancel</button>
+                <button type="submit" id="submit" class="btn btn-success">Update</button>
+            </div>
+        </div>
+        <div class="text-center" id="msg"></div>
+    </form>
+</div>
+<script>
+    $(document).ready(function($) 
+    {
+     
+      jQuery.validator.addMethod("lettersonly", function(value, element) 
+      {
+        return this.optional(element) || /^[a-z ]+$/i.test(value);
+      }, "Letters only please"); 
+      
+      $('#myForm').validate({
+        rules: 
+        {        
+          pname: 
+          {
+            required: true,
+            lettersonly: true
+          },
+          pdesc: 
+          {
+            required: true, 
+          }        
+        },
+        messages: 
+        {
+          pname: 
+          {
+            required: "Name required",
+            lettersonly:"Only Alphabets"  
+          },
+          pdesc: 
+          {
+            required: "Description required",
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+          $(element).addClass('is-valid');
+        },
+      }); 
+    });    
+  </script>
